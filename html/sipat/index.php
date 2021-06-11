@@ -7,10 +7,10 @@ error_reporting(E_ALL);
 // if (!session_id())  session_start();
 
 // <pemanggilan fungsi login
-include 'm4s_sislog/function.php';
+include '../../m4s_sislog/function.php';
 
 if (!isset($_SESSION['login']) || !isset($_SESSION['user'])) {
-    header("Location: m4s_sislog/logout.php");
+    header("Location: ../../m4s_sislog/logout.php");
     exit;
 }
 // akhir pemanggilan fungsi login>

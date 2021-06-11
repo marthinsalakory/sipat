@@ -199,7 +199,7 @@
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="auth-normal-sign-in.htm">
+                                            <a href="<?= LOGOUT; ?>">
                                                 <i class="feather icon-log-out"></i> Logout
                                             </a>
                                         </li>
@@ -325,135 +325,141 @@
                         <div class="pcoded-inner-navbar main-menu">
 
 
-                            <!-- Menu Untuk Admin  Star -->
-                            <div class="pcoded-navigatio-lavel">Menu Admin</div>
-                            <ul class="pcoded-item pcoded-left-item">
-                                <li class="">
-                                    <a href="<?= BASEURL; ?>">
-                                        <span class="pcoded-micon"><i class="feather icon-home"></i></span>
-                                        <span class="pcoded-mtext">Beranda</span>
-                                    </a>
-                                </li>
-                                <li class="">
-                                    <a href="<?= BASEURL; ?>/permintaan_masuk/belum_ditinjau"">
-                                        <span class=" pcoded-micon"><i class="fas fa-bell"></i></span>
-                                        <span class="pcoded-mtext">Belum Ditinjau</span>
-                                    </a>
-                                </li>
-                                <li class="">
-                                    <a href="navbar-light.htm">
-                                        <span class="pcoded-micon"><i class="fas fa-spinner"></i></span>
-                                        <span class="pcoded-mtext">Sedang Diproses</span>
-                                    </a>
-                                </li>
-                                <li class="">
-                                    <a href="navbar-light.htm">
-                                        <span class="pcoded-micon"><i class="fas fa-tasks"></i></span>
-                                        <span class="pcoded-mtext">Berhasil Diproses</span>
-                                    </a>
-                                </li>
-                                <li class="">
-                                    <a href="navbar-light.htm">
-                                        <span class="pcoded-micon"><i class="fas fa-users"></i></span>
-                                        <span class="pcoded-mtext">Kelola Users</span>
-                                    </a>
-                                </li>
-                                <li class="">
-                                    <a onclick="return confirm('Logout?');" href="<?= BASEURL; ?>/m4s_sislog/logout.php">
-                                        <span class="pcoded-micon"><i class="feather icon-log-out"></i></span>
-                                        <span class="pcoded-mtext">Logout</span>
-                                    </a>
-                                </li>
-                            </ul>
-                            <!-- Menu Untuk Admin  End -->
-
-
-                            <!-- Menu Untuk Operator  Star -->
-                            <div class="pcoded-navigatio-lavel">Menu Operator</div>
-                            <ul class="pcoded-item pcoded-left-item">
-                                <li class="">
-                                    <a href="<?= BASEURL; ?>">
-                                        <span class="pcoded-micon"><i class="feather icon-home"></i></span>
-                                        <span class="pcoded-mtext">Beranda</span>
-                                    </a>
-                                </li>
-                                <li class="">
-                                    <a href="<?= BASEURL; ?>/permintaan_masuk/belum_ditinjau"">
-                                        <span class=" pcoded-micon"><i class="fas fa-bell"></i></span>
-                                        <span class="pcoded-mtext">Belum Ditinjau</span>
-                                    </a>
-                                </li>
-                                <li class="">
-                                    <a href="navbar-light.htm">
-                                        <span class="pcoded-micon"><i class="fas fa-spinner"></i></span>
-                                        <span class="pcoded-mtext">Sedang Diproses</span>
-                                    </a>
-                                </li>
-                                <li class="">
-                                    <a href="navbar-light.htm">
-                                        <span class="pcoded-micon"><i class="fas fa-tasks"></i></span>
-                                        <span class="pcoded-mtext">Berhasil Diproses</span>
-                                    </a>
-                                </li>
-                                <li class="">
-                                    <a onclick="return confirm('Logout?');" href="<?= BASEURL; ?>/m4s_sislog/logout.php">
-                                        <span class="pcoded-micon"><i class="feather icon-log-out"></i></span>
-                                        <span class="pcoded-mtext">Logout</span>
-                                    </a>
-                                </li>
-                            </ul>
-                            <!-- Menu Untuk Operator  End -->
-
-
-                            <!-- Menu Untuk Users  Star -->
-                            <div class="pcoded-navigatio-lavel">Menu Users</div>
-                            <ul class="pcoded-item pcoded-left-item">
-                                <li class="">
-                                    <a href="<?= BASEURL; ?>">
-                                        <span class="pcoded-micon"><i class="feather icon-home"></i></span>
-                                        <span class="pcoded-mtext">Beranda</span>
-                                    </a>
-                                </li>
-                                <li class="">
-                                    <a href="<?= BASEURL; ?>/permintaan_masuk/belum_ditinjau"">
+                            <?php if (in_groups('admin')) { ?>
+                                <!-- Menu Untuk Admin  Star -->
+                                <div class="pcoded-navigatio-lavel">Menu Admin</div>
+                                <ul class="pcoded-item pcoded-left-item">
+                                    <li class="">
+                                        <a href="<?= BASEURL; ?>">
+                                            <span class="pcoded-micon"><i class="feather icon-home"></i></span>
+                                            <span class="pcoded-mtext">Beranda</span>
+                                        </a>
+                                    </li>
+                                    <li class="">
+                                        <a href="<?= BASEURL; ?>/ajukan_barang"">
                                         <span class=" pcoded-micon"><i class="fas fa-share-square"></i></span>
-                                        <span class="pcoded-mtext">Ajukan Barang</span>
-                                    </a>
-                                </li>
-                                <li class="">
-                                    <a href="<?= BASEURL; ?>/permintaan_masuk/belum_ditinjau"">
+                                            <span class="pcoded-mtext">Ajukan Barang</span>
+                                        </a>
+                                    </li>
+                                    <li class="">
+                                        <a href="<?= BASEURL; ?>/belum_ditinjau"">
                                         <span class=" pcoded-micon"><i class="fas fa-bell"></i></span>
-                                        <span class="pcoded-mtext">Belum Ditinjau</span>
-                                    </a>
-                                </li>
-                                <li class="">
-                                    <a href="navbar-light.htm">
-                                        <span class="pcoded-micon"><i class="fas fa-spinner"></i></span>
-                                        <span class="pcoded-mtext">Sedang Diproses</span>
-                                    </a>
-                                </li>
-                                <li class="">
-                                    <a href="navbar-light.htm">
-                                        <span class="pcoded-micon"><i class="fas fa-exclamation"></i></span>
-                                        <span class="pcoded-mtext">Pengajauan yang Ditolak</span>
-                                    </a>
-                                </li>
-                                <li class="">
-                                    <a href="navbar-light.htm">
-                                        <span class="pcoded-micon"><i class="fas fa-history"></i></span>
-                                        <span class="pcoded-mtext">Riwayat Pengajuan</span>
-                                    </a>
-                                </li>
-                                <li class="">
-                                    <a onclick="return confirm('Logout?');" href="<?= BASEURL; ?>/m4s_sislog/logout.php">
-                                        <span class="pcoded-micon"><i class="feather icon-log-out"></i></span>
-                                        <span class="pcoded-mtext">Logout</span>
-                                    </a>
-                                </li>
-                            </ul>
-                            <!-- Menu Untuk Users  end -->
-
-
+                                            <span class="pcoded-mtext">Belum Ditinjau</span>
+                                        </a>
+                                    </li>
+                                    <li class="">
+                                        <a href="navbar-light.htm">
+                                            <span class="pcoded-micon"><i class="fas fa-spinner"></i></span>
+                                            <span class="pcoded-mtext">Sedang Diproses</span>
+                                        </a>
+                                    </li>
+                                    <li class="">
+                                        <a href="navbar-light.htm">
+                                            <span class="pcoded-micon"><i class="fas fa-tasks"></i></span>
+                                            <span class="pcoded-mtext">Berhasil Diproses</span>
+                                        </a>
+                                    </li>
+                                    <li class="">
+                                        <a href="navbar-light.htm">
+                                            <span class="pcoded-micon"><i class="fas fa-users"></i></span>
+                                            <span class="pcoded-mtext">Kelola Users</span>
+                                        </a>
+                                    </li>
+                                    <li class="">
+                                        <a onclick="return confirm('Logout?');" href="<?= LOGOUT; ?>">
+                                            <span class="pcoded-micon"><i class="feather icon-log-out"></i></span>
+                                            <span class="pcoded-mtext">Logout</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <!-- Menu Untuk Admin  End -->
+                            <?php } else if (in_groups('operator')) { ?>
+                                <!-- Menu Untuk Operator  Star -->
+                                <div class="pcoded-navigatio-lavel">Menu Operator</div>
+                                <ul class="pcoded-item pcoded-left-item">
+                                    <li class="">
+                                        <a href="<?= BASEURL; ?>">
+                                            <span class="pcoded-micon"><i class="feather icon-home"></i></span>
+                                            <span class="pcoded-mtext">Beranda</span>
+                                        </a>
+                                    </li>
+                                    <li class="">
+                                        <a href="<?= BASEURL; ?>/belum_ditinjau"">
+                                        <span class=" pcoded-micon"><i class="fas fa-bell"></i></span>
+                                            <span class="pcoded-mtext">Belum Ditinjau</span>
+                                        </a>
+                                    </li>
+                                    <li class="">
+                                        <a href="navbar-light.htm">
+                                            <span class="pcoded-micon"><i class="fas fa-spinner"></i></span>
+                                            <span class="pcoded-mtext">Sedang Diproses</span>
+                                        </a>
+                                    </li>
+                                    <li class="">
+                                        <a href="navbar-light.htm">
+                                            <span class="pcoded-micon"><i class="fas fa-tasks"></i></span>
+                                            <span class="pcoded-mtext">Berhasil Diproses</span>
+                                        </a>
+                                    </li>
+                                    <li class="">
+                                        <a onclick="return confirm('Logout?');" href="<?= LOGOUT; ?>">
+                                            <span class="pcoded-micon"><i class="feather icon-log-out"></i></span>
+                                            <span class="pcoded-mtext">Logout</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <!-- Menu Untuk Operator  End -->
+                            <?php } else if (in_groups('user')) { ?>
+                                <!-- Menu Untuk Users  Star -->
+                                <div class="pcoded-navigatio-lavel">Menu Users</div>
+                                <ul class="pcoded-item pcoded-left-item">
+                                    <li class="">
+                                        <a href="<?= BASEURL; ?>">
+                                            <span class="pcoded-micon"><i class="feather icon-home"></i></span>
+                                            <span class="pcoded-mtext">Beranda</span>
+                                        </a>
+                                    </li>
+                                    <li class="">
+                                        <a href="<?= BASEURL; ?>/ajukan_barang"">
+                                        <span class=" pcoded-micon"><i class="fas fa-share-square"></i></span>
+                                            <span class="pcoded-mtext">Ajukan Barang</span>
+                                        </a>
+                                    </li>
+                                    <li class="">
+                                        <a href="<?= BASEURL; ?>/belum_ditinjau"">
+                                        <span class=" pcoded-micon"><i class="fas fa-bell"></i></span>
+                                            <span class="pcoded-mtext">Belum Ditinjau</span>
+                                        </a>
+                                    </li>
+                                    <li class="">
+                                        <a href="navbar-light.htm">
+                                            <span class="pcoded-micon"><i class="fas fa-spinner"></i></span>
+                                            <span class="pcoded-mtext">Sedang Diproses</span>
+                                        </a>
+                                    </li>
+                                    <li class="">
+                                        <a href="navbar-light.htm">
+                                            <span class="pcoded-micon"><i class="fas fa-exclamation"></i></span>
+                                            <span class="pcoded-mtext">Pengajauan yang Ditolak</span>
+                                        </a>
+                                    </li>
+                                    <li class="">
+                                        <a href="navbar-light.htm">
+                                            <span class="pcoded-micon"><i class="fas fa-history"></i></span>
+                                            <span class="pcoded-mtext">Riwayat Pengajuan</span>
+                                        </a>
+                                    </li>
+                                    <li class="">
+                                        <a onclick="return confirm('Logout?');" href="<?= LOGOUT; ?>">
+                                            <span class="pcoded-micon"><i class="feather icon-log-out"></i></span>
+                                            <span class="pcoded-mtext">Logout</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <!-- Menu Untuk Users  end -->
+                            <?php } else {
+                                header("Location: " . LOGOUT);
+                            } ?>
                         </div>
                     </nav>
                     <div class="pcoded-content">

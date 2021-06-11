@@ -1,4 +1,5 @@
 <?php
+include "../app_sipat/config.php";
 
 // BaseURL
 $BASEURL = "http://localhost/sipat";
@@ -73,8 +74,10 @@ if (isset($_POST['register'])) {
 }
 
 if (isset($_POST['login'])) {
-    $username = $_POST['username'];
-    $password = $_POST['password'];
+    $username = htmlspecialchars($_POST['username']);
+    $password = htmlspecialchars($_POST['password']);
+    $username = preg_replace("/[^a-zA-Z0-9,. ]/", "", $username);
+    $password = preg_replace("/[^a-zA-Z0-9,. ]/", "", $password);
 
     $resultu = mysqli_query($conn, "SELECT * FROM users WHERE username = '$username'");
     $resulti = mysqli_query($conn, "SELECT * FROM users WHERE email = '$username'");
@@ -84,7 +87,7 @@ if (isset($_POST['login'])) {
         if ($password == $pass['password']) {
             $_SESSION["login"] = true;
             $_SESSION["user"] = $pass['id'];
-            header("Location: beranda.php");
+            header("Location: " . BASEURL);
             exit;
         }
     } elseif (mysqli_num_rows($resulti) === 1) {
@@ -93,7 +96,7 @@ if (isset($_POST['login'])) {
         if ($password == $pass['password']) {
             $_SESSION["login"] = true;
             $_SESSION["user"] = $pass['id'];
-            header("Location: beranda.php");
+            header("Location: " . BASEURL);
             exit;
         }
     }

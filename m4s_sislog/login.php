@@ -1,8 +1,9 @@
 <?php include "function.php"; ?>
+<?php include "../app_sipat/config.php"; ?>
 <?php
 
 if (isset($_SESSION['login'])) {
-    header("Location: ../");
+    header("Location: " . BASEURL);
     exit;
 }
 
@@ -21,34 +22,29 @@ if (isset($_SESSION['login'])) {
 <body>
     <div class="container">
         <div class="row justify-content-center mt-5">
-            <div class="col-md-5">
+            <div class="col-md-4">
                 <div class="card">
                     <div class="card-header bg-transparent mb-0">
-                        <h5 class="text-center">M4S <span class="font-weight-bold text-primary">REGISTER</span></h5>
+                        <h5 class="text-center">M4S <span class="font-weight-bold text-primary">LOGIN</span></h5>
                     </div>
                     <div class="card-body">
                         <?php pesan_login(); ?>
                         <form action="action.php" method="POST">
                             <div class="form-group">
-                                <input autocomplete="off" type="text" name="nama_lengkap" class="form-control" placeholder="Full name">
+                                <input type="text" name="username" class="form-control" placeholder="Username / Email">
                             </div>
                             <div class="form-group">
-                                <input type="email" name="email" class="form-control" placeholder="Email">
+                                <input type="password" name="password" class="form-control" placeholder="Password">
                             </div>
-                            <div class="form-group">
-                                <input autocomplete="off" type="text" name="username" class="form-control" placeholder="Username">
-                            </div>
-                            <div class="form-group">
-                                <input autocomplete="off" type="password" name="password" class="form-control" placeholder="Password">
-                            </div>
-                            <div class="form-group">
-                                <input autocomplete="off" type="password" name="password2" class="form-control" placeholder="Confirm password">
+                            <div class="form-group custom-control custom-checkbox mt-2">
+                                <input type="checkbox" class="custom-control-input" id="customControlAutosizing">
+                                <label class="custom-control-label" for="customControlAutosizing">Remember me</label>
                             </div>
                             <div class="form-group mt-2">
-                                <input autocomplete="off" type="submit" name="register" value="register" class="btn btn-primary btn-block">
+                                <input type="submit" name="login" value="Login" class="btn btn-primary btn-block">
                             </div>
                             <div class="form-group mt-2">
-                                <a href="login.php">Sign now</a>
+                                <a href="register.php">Create your account</a>
                             </div>
                         </form>
                     </div>
@@ -60,5 +56,4 @@ if (isset($_SESSION['login'])) {
 </body>
 
 </html>
-
-<?php if (isset($_SESSION)) unset($_SESSION['konfirmasi_password']); ?>
+<?php if (isset($_SESSION))  unset($_SESSION['berhasil']); ?>

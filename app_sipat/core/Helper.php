@@ -8,7 +8,7 @@ class Helper
 
 	public function get_cookie($key)
 	{
-		if( isset($_COOKIE[$key]) ) {
+		if (isset($_COOKIE[$key])) {
 			return $_COOKIE[$key];
 		} else {
 			return false;
@@ -17,7 +17,6 @@ class Helper
 	public function set_cookie($data)
 	{
 		setcookie($data['cookie_name'], $data['cookie_value'], time() + (60 * 60), "/");
-							
 	}
 
 	public function unset_cookie($data)
@@ -219,10 +218,10 @@ class Helper
 		$name = $_FILES[$file]['name'];
 		$jenis = explode('.', $name);
 		$ekstensi = strtolower(end($jenis));
-		
+
 		if ($ekstensi != $key) {
 			return true;
-		}else {
+		} else {
 			return false;
 		}
 	}
@@ -265,7 +264,7 @@ class Helper
 		$ekstensi = strtolower(end($ekstensi));
 		$tmpname = $_FILES[$key]['tmp_name'];
 		// generate nama file baru
-		$newfilename = $key."-".$filename;
+		$newfilename = $key . "-" . $filename;
 		$newfilename .= '.';
 		$newfilename .= $ekstensi;
 		$target_path = $destination_path . 'files/' . $lokasi . '/' . basename($newfilename);
@@ -316,7 +315,7 @@ class Helper
 
 	public function generatePassword()
 	{
-		return rand(111111,999999);
+		return rand(111111, 999999);
 	}
 
 	public function getmenu($key)
@@ -324,22 +323,22 @@ class Helper
 		switch ($key) {
 			case '30':
 				$menu = '<li class="nav-item">
-							<a href="'.BASEURL.'/Sarjana" class="nav-link">Petunjuk</a>
+							<a href="' . BASEURL . '/Sarjana" class="nav-link">Petunjuk</a>
 						</li>
 						<li class="nav-item">
-							<a href="'.BASEURL.'/Sarjana/foto" class="nav-link">Unggah Foto</a>
+							<a href="' . BASEURL . '/Sarjana/foto" class="nav-link">Unggah Foto</a>
 						</li>
 						<li class="nav-item">
-							<a href="'.BASEURL.'/Sarjana/lokasi" class="nav-link">Pilih Lokasi Ujian</a>
+							<a href="' . BASEURL . '/Sarjana/lokasi" class="nav-link">Pilih Lokasi Ujian</a>
 						</li>
 						<li class="nav-item">
-							<a href="'.BASEURL.'/Sarjana/prodi" class="nav-link">Pilih Program Studi</a>
+							<a href="' . BASEURL . '/Sarjana/prodi" class="nav-link">Pilih Program Studi</a>
 						</li>
 						<li class="nav-item">
-							<a href="'.BASEURL.'/Sarjana/parmanen" class="nav-link">Parmanen Data dan Cetak Kartu</a>
+							<a href="' . BASEURL . '/Sarjana/parmanen" class="nav-link">Parmanen Data dan Cetak Kartu</a>
 						</li>';
 				break;
-			
+
 			default:
 				# code...
 				break;

@@ -10,6 +10,18 @@ $dbname = 'sipat';
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 
+function save($tabel, $data)
+{
+    global $conn;
+    $query = "INSERT INTO $tabel
+                VALUES
+                ($data)
+                ";
+    mysqli_query($conn, $query);
+
+    return mysqli_affected_rows($conn);;
+}
+
 function query($query)
 {
     global $conn;
@@ -58,4 +70,9 @@ function in_groups($key)
         return true;
     }
     return false;
+}
+
+function redirect($url)
+{
+    return header("Location: " . $url);
 }

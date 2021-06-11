@@ -1,4 +1,5 @@
 <?php
+include "../app_sipat/config.php";
 
 session_start();
 
