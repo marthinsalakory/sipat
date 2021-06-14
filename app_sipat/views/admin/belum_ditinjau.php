@@ -55,25 +55,26 @@
                                     <th>Nama Barang</th>
                                     <th>Jumlah</th>
                                     <th>Satuan</th>
-                                    <th>Keterangan</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Kordinator kelompok kerja akademik</td>
-                                    <td>Pekerjaan</td>
-                                    <td>Sabtu,13-04-2021 | 13:40</td>
-                                    <td>Papan Tulis</td>
-                                    <td>3</td>
-                                    <td>Buah</td>
-                                    <td>Diusahakan Secepatnya</td>
-                                    <td>
-                                        <button class="btn btn-danger btn-sm">Batalkan</button>
-                                        <button class="btn btn-success btn-sm">Konfirmasi</button>
-                                    </td>
-                                </tr>
+                                <?php $no = 0; ?>
+                                <?php foreach ($data['belum_ditinjau'] as $b) : ?>
+                                    <tr>
+                                        <td><?= ++$no; ?></td>
+                                        <td><?= $b['sub_bagian']; ?></td>
+                                        <td><?= $b['keperluan']; ?></td>
+                                        <td><?= $b["waktu"]; ?></td>
+                                        <td><?= $b['nama_barang']; ?></td>
+                                        <td><?= $b['jumlah']; ?></td>
+                                        <td><?= $b['satuan']; ?></td>
+                                        <td>
+                                            <button class="btn btn-danger btn-round btn-sm">Batalkan</button>
+                                            <button class="btn btn-success btn-round btn-sm">Konfirmasi</button>
+                                        </td>
+                                    </tr>
+                                <?php endforeach; ?>
                             </tbody>
                         </table>
                     </div>

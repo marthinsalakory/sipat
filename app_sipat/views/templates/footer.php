@@ -60,6 +60,13 @@
 <!-- modernizr js -->
 <script type="text/javascript" src="<?= BASEURL; ?>\assets\files\bower_components\modernizr\js\modernizr.js"></script>
 <script type="text/javascript" src="<?= BASEURL; ?>\assets\files\bower_components\modernizr\js\css-scrollbars.js"></script>
+<!-- sweet alert js -->
+<script type="text/javascript" src="<?= BASEURL; ?>\assets\files\bower_components\sweetalert\js\sweetalert.min.js"></script>
+<script type="text/javascript" src="<?= BASEURL; ?>\assets\files\assets\js\modal.js"></script>
+<!-- sweet alert modal.js intialize js -->
+<!-- modalEffects js nifty modal window effects -->
+<script type="text/javascript" src="<?= BASEURL; ?>\assets\files\assets\js\modalEffects.js"></script>
+<script type="text/javascript" src="<?= BASEURL; ?>\assets\files\assets\js\classie.js"></script>
 <!-- data-table js -->
 <script src="<?= BASEURL; ?>\assets\files\bower_components\datatables.net\js\jquery.dataTables.min.js"></script>
 <script src="<?= BASEURL; ?>\assets\files\bower_components\datatables.net-buttons\js\dataTables.buttons.min.js"></script>
@@ -88,6 +95,7 @@
 <script src="<?= BASEURL; ?>\assets\files\assets\js\pcoded.min.js"></script>
 <!-- custom js -->
 <script src="<?= BASEURL; ?>\assets\files\assets\pages\data-table\extensions\responsive\js\responsive-custom.js"></script>
+<script type="text/javascript" src="<?= BASEURL; ?>\assets\files\assets\js\script.js"></script>
 
 <script src="<?= BASEURL; ?>\assets\files\assets\js\vartical-layout.min.js"></script>
 <script type="text/javascript" src="<?= BASEURL; ?>\assets\files\assets\pages\dashboard\custom-dashboard.js"></script>
@@ -104,6 +112,11 @@
 
     gtag('config', 'UA-23581568-13');
 </script>
+
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
+<!-- validasi jquery -->
+<!-- <script src="<?= BASEURL; ?>/assets/saya/lib/jquery.js"></script> -->
+<script src="<?= BASEURL; ?>/assets/saya/dist/jquery.validate.js"></script>
 </body>
 
 </html>

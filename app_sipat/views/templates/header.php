@@ -16,6 +16,12 @@
     <meta name="description" content="#">
     <meta name="keywords" content="Admin , Responsive, Landing, Bootstrap, App, Template, Mobile, iOS, Android, apple, creative app">
     <meta name="author" content="#">
+    <!-- Script Jquery -->
+    <!-- <script src="<?= BASEURL; ?>/assets/saya/jquery.min.js"></script> -->
+    <script src="<?= BASEURL; ?>/assets/saya/lib/jquery.js"></script>
+    <script src="<?= BASEURL; ?>/assets/saya/my_script.js"></script>
+
+
     <!-- Font Awesome -->
     <link rel="stylesheet" href="<?= BASEURL; ?>\assets\files\fontawesome-free\css\all.min.css">
     <!-- Favicon icon -->
@@ -26,12 +32,16 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,800" rel="stylesheet">
     <!-- Required Fremwork -->
     <link rel="stylesheet" type="text/css" href="<?= BASEURL; ?>\assets\files\bower_components\bootstrap\css\bootstrap.min.css">
+    <!-- sweet alert framework -->
+    <link rel="stylesheet" type="text/css" href="<?= BASEURL; ?>\assets\files\bower_components\sweetalert\css\sweetalert.css">
     <!-- themify-icons line icon -->
     <link rel="stylesheet" type="text/css" href="<?= BASEURL; ?>\assets\files\assets\icon\themify-icons\themify-icons.css">
     <!-- ico font -->
     <link rel="stylesheet" type="text/css" href="<?= BASEURL; ?>\assets\files\assets\icon\icofont\css\icofont.css">
     <!-- feather Awesome -->
     <link rel="stylesheet" type="text/css" href="<?= BASEURL; ?>\assets\files\assets\icon\feather\css\feather.css">
+    <!-- animation nifty modal window effects css -->
+    <link rel="stylesheet" type="text/css" href="<?= BASEURL; ?>\assets\files\assets\css\component.css">
     <!-- Data Table Css -->
     <link rel="stylesheet" type="text/css" href="<?= BASEURL; ?>\assets\files\bower_components\datatables.net-bs4\css\dataTables.bootstrap4.min.css">
     <link rel="stylesheet" type="text/css" href="<?= BASEURL; ?>\assets\files\assets\pages\data-table\css\buttons.dataTables.min.css">
@@ -390,7 +400,7 @@
                                         </a>
                                     </li>
                                     <li class="">
-                                        <a href="navbar-light.htm">
+                                        <a href="<?= BASEURL; ?>/dalam_proses">
                                             <span class="pcoded-micon"><i class="fas fa-spinner"></i></span>
                                             <span class="pcoded-mtext">Sedang Diproses</span>
                                         </a>
@@ -399,6 +409,12 @@
                                         <a href="navbar-light.htm">
                                             <span class="pcoded-micon"><i class="fas fa-tasks"></i></span>
                                             <span class="pcoded-mtext">Berhasil Diproses</span>
+                                        </a>
+                                    </li>
+                                    <li class="">
+                                        <a href="<?= BASEURL; ?>/riwayat_pembatalan">
+                                            <span class="pcoded-micon"><i class="fas fa-exclamation"></i></span>
+                                            <span class="pcoded-mtext">Riwayat Pembatalan</span>
                                         </a>
                                     </li>
                                     <li class="">
@@ -420,25 +436,25 @@
                                         </a>
                                     </li>
                                     <li class="">
-                                        <a href="<?= BASEURL; ?>/ajukan_barang"">
-                                        <span class=" pcoded-micon"><i class="fas fa-share-square"></i></span>
+                                        <a href="<?= BASEURL; ?>/ajukan_barang">
+                                            <span class="pcoded-micon"><i class="fas fa-share-square"></i></span>
                                             <span class="pcoded-mtext">Ajukan Barang</span>
                                         </a>
                                     </li>
                                     <li class="">
-                                        <a href="<?= BASEURL; ?>/belum_ditinjau"">
-                                        <span class=" pcoded-micon"><i class="fas fa-bell"></i></span>
+                                        <a href="<?= BASEURL; ?>/belum_ditinjau">
+                                            <span class="pcoded-micon"><i class="fas fa-bell"></i></span>
                                             <span class="pcoded-mtext">Belum Ditinjau</span>
                                         </a>
                                     </li>
                                     <li class="">
-                                        <a href="navbar-light.htm">
+                                        <a href="<?= BASEURL; ?>/dalam_proses">
                                             <span class="pcoded-micon"><i class="fas fa-spinner"></i></span>
                                             <span class="pcoded-mtext">Sedang Diproses</span>
                                         </a>
                                     </li>
                                     <li class="">
-                                        <a href="navbar-light.htm">
+                                        <a href="<?= BASEURL; ?>/riwayat_pembatalan">
                                             <span class="pcoded-micon"><i class="fas fa-exclamation"></i></span>
                                             <span class="pcoded-mtext">Pengajauan yang Ditolak</span>
                                         </a>

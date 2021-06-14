@@ -4,6 +4,11 @@
         <!-- Page-header start -->
         <div class="page-header">
             <div class="row align-items-end">
+
+                <!-- Solid Alert start -->
+                <?php flash(); ?>
+                <!-- Solid Alert end -->
+
                 <div class="col-lg-8">
                     <div class="page-header-title">
                         <div class="d-inline">
@@ -55,25 +60,29 @@
                                     <th>Nama Barang</th>
                                     <th>Jumlah</th>
                                     <th>Satuan</th>
-                                    <th>Keterangan</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Kordinator kelompok kerja akademik</td>
-                                    <td>Pekerjaan</td>
-                                    <td>Sabtu,13-04-2021 | 13:40</td>
-                                    <td>Papan Tulis</td>
-                                    <td>3</td>
-                                    <td>Buah</td>
-                                    <td>Diusahakan Secepatnya</td>
-                                    <td>
-                                        <button class="btn btn-danger btn-sm">Batalkan</button>
-                                        <button class="btn btn-success btn-sm">Konfirmasi</button>
-                                    </td>
-                                </tr>
+                                <?php $no = 0; ?>
+                                <?php foreach ($data['belum_ditinjau'] as $b) : ?>
+                                    <?php if ($b['user_id'] == user('id')) : ?>
+                                        <tr>
+                                            <td><?= ++$no; ?></td>
+                                            <td><?= $b['sub_bagian']; ?></td>
+                                            <td><?= $b['keperluan']; ?></td>
+                                            <td><?= $b["waktu"]; ?></td>
+                                            <td><?= $b['nama_barang']; ?></td>
+                                            <td><?= $b['jumlah']; ?></td>
+                                            <td><?= $b['satuan']; ?></td>
+                                            <td>
+                                                <a href="<?= BASEURL; ?>/belum_ditinjau/hapus/<?= $b['id']; ?>">
+                                                    <button onclick="return confirm('Apakah anda yakin ingin membatalkan pengajuan?');" class="btn btn-danger btn-round btn-sm">Batal</button>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    <?php endif; ?>
+                                <?php endforeach; ?>
                             </tbody>
                         </table>
                     </div>

@@ -6,6 +6,7 @@ class Ajukan_barang extends Controller
     function __construct()
     {
         $this->helper = new Helper;
+        $this->model = $this->model('sipatModel');
     }
 
     public function index()
@@ -33,7 +34,7 @@ class Ajukan_barang extends Controller
             $this->view('users/ajukan_barang', $data);
             $this->view('templates/footer', $data);
         } else {
-            header("Location: " . BASEURL . "/m4s_sislog/logout.php");
+            header("Location: " . LOGOUT);
         }
     }
 
@@ -45,26 +46,26 @@ class Ajukan_barang extends Controller
                 $d = $_POST;
 
                 // mengambil data post
+                $id = uniqid();
                 $sub_bagian = user('nama_lengkap');
                 $keperluan = $d['keperluan'];
                 $waktu = 21;
                 $nama_barang = $d['nama_barang'];
                 $jumlah = $d['jumlah'];
                 $satuan = $d['satuan'];
-                $keterangan = $d['keterangan'];
                 $user_id = user('id');
 
                 // masukan kedalam variabel
-                $data = "'', '$sub_bagian', '$keperluan', '$waktu', '$nama_barang', '$jumlah', '$satuan', '$keterangan', '$user_id'";
+                $data = "'$id', '$sub_bagian', '$keperluan', '$waktu', '$nama_barang', '$jumlah', '$satuan', '$user_id'";
 
-                $model = $this->model('sipatModel')->belum_ditinjau($data);
+                $model = $this->model->ajukan_barang($data);
 
                 if ($model > 0) {
-                    // Flasher::setFlash('berhasil', 'ditambahkan', 'success');
-                    redirect(BASEURL);
+                    setFlash('success', 'Berhasil mengajukan barang');
+                    redirect(BASEURL . "/belum_ditinjau");
                     exit;
                 } else {
-                    // Flasher::setFlash('gagal', 'ditambahkan', 'danger');
+                    setFlash('danger', 'Gagal membuat pengajuan');
                     redirect(BASEURL . '/ajukan_barang');
                     exit;
                 }

@@ -33,6 +33,32 @@ function query($query)
     return $rows;
 }
 
+// untuk set flash
+function setFlash($warna, $pesan)
+{
+    $_SESSION['flash'] = [
+        'pesan' => $pesan,
+        'warna'  => $warna
+    ];
+}
+
+// untuk menampilakan flash
+function flash()
+{
+    if (isset($_SESSION['flash'])) {
+        echo '<div class="col-sm-12 col-md-12 col-xl-12">
+                    <div class="alert alert-danger background-' . $_SESSION['flash']["warna"] . '">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <i class="icofont icofont-close-line-circled text-white"></i>
+                        </button>
+                        <code class="col-xl-11 text-center">' . $_SESSION['flash']['pesan'] . '</code>
+                    </div>
+                </div>';
+        unset($_SESSION['flash']);
+    }
+}
+
+
 // clash untuk pesan login
 function set_pesan_login($pesan, $warna)
 {
@@ -72,7 +98,40 @@ function in_groups($key)
     return false;
 }
 
+function delete($tabel, $key, $id)
+{;
+    global $conn;
+    mysqli_query($conn, "DELETE FROM $tabel WHERE $key = '$id'");
+
+    return mysqli_affected_rows($conn);
+}
+
+function get_all($key)
+{
+    global $conn;
+    return mysqli_query($conn, "SELECT * FROM $key");
+}
+
+function get_first($tabel, $key, $data)
+{
+    return  query("SELECT * FROM $tabel WHERE $key = '$data'")[0];
+}
+
 function redirect($url)
 {
-    return header("Location: " . $url);
+    header("Location: " . $url);
+    exit;
+}
+
+// untuk var_dump tanpa mengakhiri program
+function d($key)
+{
+    var_dump($key);
+}
+
+// untuk var_dump selanjutnya diakhiri program
+function dd($key)
+{
+    var_dump($key);
+    die;
 }

@@ -1,3 +1,13 @@
+<style>
+    .form_pengajuan label.error {
+        /* .tes { */
+        color: red;
+        position: absolute;
+        bottom: -30px;
+        left: 50px;
+        z-index: 100;
+    }
+</style>
 <!-- Main-body start -->
 <div class="main-body">
     <div class="page-wrapper">
@@ -40,17 +50,24 @@
                 </div> -->
                 <div class="card-block">
                     <div class="row">
+                        <!-- Solid Alert start -->
+                        <?php flash(); ?>
+                        <!-- Solid Alert end -->
 
                         <div class="col-sm-12">
+
                             <h4 class="sub-title text-center mb-5"><b>Form Pengajuan Barang</b></h4>
-                            <form action="<?= BASEURL; ?>/ajukan_barang/tambah" method="POST">
+                            <form class="form_pengajuan" action="<?= BASEURL; ?>/ajukan_barang/tambah" method="POST">
                                 <div class="row mb-4">
                                     <div class="col-sm-12">
-                                        <div class="input-group input-group-primary">
+                                        <div class="input-group input-group-primary tas">
                                             <span class="input-group-addon">
                                                 <i class="fas fa-adjust"></i>
                                             </span>
-                                            <input type="text" name="nama_barang" class="form-control" placeholder="Nama barang">
+                                            <input autocomplete="off" type="text" id="nama_barang" name="nama_barang" class="form-control" placeholder="Nama barang">
+                                            <!-- <div class="tes">
+                                                tes saja saijdbisbjxbj saDIABJKSAd DSFIJBNWEKD EWCDISJBNEWOKN
+                                            </div> -->
                                         </div>
                                     </div>
                                 </div>
@@ -60,7 +77,7 @@
                                             <span class="input-group-addon">
                                                 <i class="fas fa-quote-left"></i>
                                             </span>
-                                            <input type="text" name="keperluan" class="form-control" placeholder="Jenis keperluan">
+                                            <input autocomplete="off" type="text" id="keperluan" name="keperluan" class="form-control" placeholder="Jenis keperluan">
                                         </div>
                                     </div>
                                 </div>
@@ -70,35 +87,33 @@
                                             <span class="input-group-addon">
                                                 <i class="fas fa-sort-amount-up-alt"></i>
                                             </span>
-                                            <input type="text" name="jumlah" class="form-control" placeholder="Jumlah item">
+                                            <input autocomplete="off" type="number" id="jumlah" name="jumlah" class="form-control" placeholder="Jumlah item">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row mb-4">
                                     <div class="col-sm-12">
-                                        <div class="input-group input-group-success">
+                                        <div class="input-group input-group-primary">
                                             <span class="input-group-addon">
                                                 <i class="icofont icofont-presentation"></i>
                                             </span>
-                                            <input type="text" name="satuan" class="form-control" placeholder="Jenis Satuan">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row mb-4">
-                                    <div class="col-sm-12">
-                                        <div class="input-group input-group-info">
-                                            <span class="input-group-addon">
-                                                <i class="fas fa-globe-europe"></i>
-                                            </span>
-                                            <textarea class="form-control" placeholder="Keterangan" name="keterangan" id="keterangan" cols="30" rows="10"></textarea>
+                                            <select name="satuan" required class="form-control custom-select" id="satuan">
+                                                <option selected>Jenis satuan</option>
+                                                <option value="kg">Kilogram</option>
+                                                <option value="Meter">Meter</option>
+                                                <option value="Buah">Buah</option>
+                                                <option value="Lembar">Lembar</option>
+                                                <option value="Pack">Pack</option>
+                                                <option value="Lusin">Lusin</option>
+                                                <option value="Botol">Botol</option>
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row mb-4">
                                     <div class="col-sm-12 text-center">
-                                        <hr class="bg-warning">
-                                        <button type="reset" class="btn btn-danger mr-2">Reset</button>
-                                        <button type="submit" name="submit" class="btn btn-primary">Ajukan Sekarang</button>
+                                        <button type="reset" class="btn btn-danger btn-block btn-round mb-3">Reset</button>
+                                        <button type="submit" name="submit" class="btn btn-primary btn-block btn-round">Ajukan Sekarang</button>
                                     </div>
                                 </div>
                             </form>
@@ -112,6 +127,7 @@
 </div>
 <!-- Main-body end -->
 <div id="styleSelector">
+
 
 </div>
 </div>
