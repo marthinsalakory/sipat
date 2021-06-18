@@ -11,7 +11,19 @@ class Dalam_proses extends Controller
 
     public function index()
     {
-        if (in_groups('admin')) {
+        $this->helper->is_login();
+        if ($this->helper->in_groups('admin')) {
+            $data =
+                [
+                    'title' => 'Permintaan Belum Ditinjau',
+                    'dalam_proses' => $this->model->dalam_proses(),
+                    'dashboard' => 'active',
+
+                ];
+            $this->view('templates/header', $data);
+            $this->view('admin/dalam_proses', $data);
+            $this->view('templates/footer', $data);
+        } elseif ($this->helper->in_groups('operator')) {
             $data =
                 [
                     'title' => 'Permintaan Belum Ditinjau',
@@ -22,18 +34,7 @@ class Dalam_proses extends Controller
             $this->view('templates/header', $data);
             $this->view('operators/dalam_proses', $data);
             $this->view('templates/footer', $data);
-        } elseif (in_groups('operator')) {
-            $data =
-                [
-                    'title' => 'Permintaan Belum Ditinjau',
-                    'dalam_proses' => $this->model->dalam_proses(),
-                    'dashboard' => 'active',
-
-                ];
-            $this->view('templates/header', $data);
-            $this->view('operators/dalam_proses', $data);
-            $this->view('templates/footer', $data);
-        } elseif (in_groups('user')) {
+        } elseif ($this->helper->in_groups('user')) {
             $data =
                 [
                     'title' => 'Permintaan Belum Ditinjau',
@@ -45,45 +46,39 @@ class Dalam_proses extends Controller
             $this->view('users/dalam_proses', $data);
             $this->view('templates/footer', $data);
         } else {
-            redirect(BASEURL . "/m4s_sislog/logout.php");
+            $this->helper->redirect(BASEURL . "/m4s_sislog/logout.php");
         }
     }
 
     public function konfirmasi($id)
     {
-        if (in_groups('admin')) {
-            redirect(BASEURL);
-        } elseif (in_groups('operator')) {
-            redirect(BASEURL);
-        } elseif (in_groups('user')) {
-            $d = get_first('dalam_proses', 'id', $id);
+        $this->helper->is_login();
+        if ($this->helper->in_groups('operator')) {
+            $this->helper->redirect(BASEURL);
+        } elseif ($this->helper->in_groups('user') || $this->helper->in_groups('admin')) {
+            $d = $this->helper->get_first('dalam_proses', 'id', $id);
 
-            // mengambil data post
-            $id = $d['id'];
-            $sub_bagian = $d['sub_bagian'];
-            $keperluan = $d['keperluan'];
-            $waktu = $d['waktu'];
-            $nama_barang = $d['nama_barang'];
-            $jumlah = $d['jumlah'];
-            $satuan = $d['satuan'];
-            $user_id = $d['user_id'];
-            $operator_id = $d['operator_id'];
+            $data =
+                [
+                    'id' => $d['id'],
+                    'sub_bagian' => $d['sub_bagian'],
+                    'keperluan' => $d['keperluan'],
+                    'waktu' => $d['waktu'],
+                    'nama_barang' => $d['nama_barang'],
+                    'jumlah' => $d['jumlah'],
+                    'satuan' => $d['satuan'],
+                    'user_id' => $d['user_id'],
+                    'operator_id' => $d['operator_id'],
+                ];
 
-            // masukan kedalam variabel
-            $data = "'$id', '$sub_bagian', '$keperluan', '$waktu', '$nama_barang', '$jumlah', '$satuan', '$user_id', '$operator_id'";
-
-            $model = $this->model->konfirmasi_akhir($data);
-
-            if ($model > 0) {
-                if (delete('dalam_proses', 'id', $id) > 0) :
-                    setFlash('success', 'Misi pengajuan anda telah selesay');
-                    redirect(BASEURL . '/riwayat_pengajuan');
-                endif;
+            if ($this->model->konfirmasi_akhir($data) > 0) {
+                Flasher::setFlash('success', 'Proses pengajuan selesay');
+                $this->helper->redirect(BASEURL . '/riwayat_pengajuan');
             } else {
-                redirect(BASEURL . '/belum_ditinjau');
+                $this->helper->redirect(BASEURL . '/belum_ditinjau');
             }
         } else {
-            redirect(LOGOUT);
+            $this->helper->redirect(LOGOUT);
         }
     }
 }

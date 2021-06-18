@@ -4,6 +4,10 @@
         <!-- Page-header start -->
         <div class="page-header">
             <div class="row align-items-end">
+                <!-- Solid Alert start -->
+                <?php Flasher::flash(); ?>
+                <!-- Solid Alert end -->
+
                 <div class="col-lg-8">
                     <div class="page-header-title">
                         <div class="d-inline">
@@ -56,7 +60,6 @@
                                     <th>Waktu</th>
                                     <th>Nama Barang</th>
                                     <th>Jumlah</th>
-                                    <th>Keterangan</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -122,8 +125,4 @@
 </script>
 <!-- javascript untuk modal end -->
 
-<!-- Warning Section Starts -->
-<div id="styleSelector">
-
-</div>
 </div>

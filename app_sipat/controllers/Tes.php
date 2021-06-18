@@ -10,7 +10,12 @@ class Tes extends Controller
 
     public function index()
     {
-        var_dump($_SESSION);
-        die;
+        $data =
+            [
+                'title' => 'System Permintaan Alat',
+                'dashboard' => 'active',
+
+            ];
+        $this->view('tes', $data);
     }
 }

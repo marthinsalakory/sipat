@@ -11,35 +11,33 @@ class Belum_ditinjau extends Controller
 
     public function index()
     {
-        if (in_groups('admin')) {
+        $this->helper->is_login();
+        if ($this->helper->in_groups('admin')) {
             $data =
                 [
                     'title' => 'Permintaan Belum Ditinjau',
                     'belum_ditinjau' => $this->model->belum_ditinjau(),
                     'dashboard' => 'active',
-
                 ];
             $this->view('templates/header', $data);
             $this->view('admin/belum_ditinjau', $data);
             $this->view('templates/footer', $data);
-        } elseif (in_groups('operator')) {
+        } elseif ($this->helper->in_groups('operator')) {
             $data =
                 [
                     'title' => 'Permintaan Belum Ditinjau',
                     'belum_ditinjau' => $this->model->belum_ditinjau(),
                     'dashboard' => 'active',
-
                 ];
             $this->view('templates/header', $data);
             $this->view('operators/belum_ditinjau', $data);
             $this->view('templates/footer', $data);
-        } elseif (in_groups('user')) {
+        } elseif ($this->helper->in_groups('user')) {
             $data =
                 [
                     'title' => 'Permintaan Belum Ditinjau',
                     'belum_ditinjau' => $this->model->belum_ditinjau(),
                     'dashboard' => 'active',
-
                 ];
             $this->view('templates/header', $data);
             $this->view('users/belum_ditinjau', $data);
@@ -51,148 +49,93 @@ class Belum_ditinjau extends Controller
 
     public function hapus($key)
     {
-        if (in_groups('admin')) {
-            $model = $this->model->hapus_belum_ditinjau($key);
-
-            if ($model > 0) {
-                // Flasher::setFlash('berhasil', 'ditambahkan', 'success');
-                redirect(BASEURL . '/belum_ditinjau');
-                exit;
-            } else {
-                // Flasher::setFlash('gagal', 'ditambahkan', 'danger');
-                redirect(BASEURL . '/belum_ditinjau');
-                exit;
-            }
-        } elseif (in_groups('operator')) {
-            redirect(BASEURL);
+        $this->helper->is_login();
+        if ($this->helper->in_groups('operator')) {
+            $this->helper->redirect(BASEURL);
             exit;
-        } elseif (in_groups('user')) {
-
-            $model = $this->model->hapus_belum_ditinjau($key);
-
-            if ($model > 0) {
-                // Flasher::setFlash('berhasil', 'ditambahkan', 'success');
-                redirect(BASEURL . '/belum_ditinjau');
-                exit;
-            } else {
-                // Flasher::setFlash('gagal', 'ditambahkan', 'danger');
-                redirect(BASEURL . '/belum_ditinjau');
+        } elseif ($this->helper->in_groups('user') || $this->helper->in_groups('admin')) {
+            if ($this->model->hapus_belum_ditinjau($key) > 0) {
+                Flasher::setFlash('success', 'Berhasil dihapus');
+                $this->helper->redirect(BASEURL . '/belum_ditinjau');
                 exit;
             }
         } else {
-            header("Location: " . LOGOUT);
+            $this->helper->redirect(LOGOUT);
         }
     }
 
     public function konfirmasi($key)
     {
-        if (in_groups('admin')) {
-            $model = $this->model->hapus_belum_ditinjau($key);
+        $this->helper->is_login();
+        if ($this->helper->in_groups('operator') || $this->helper->in_groups('admin')) {
 
-            if ($model > 0) {
-                // Flasher::setFlash('berhasil', 'ditambahkan', 'success');
-                redirect(BASEURL . '/belum_ditinjau');
-                exit;
-            } else {
-                // Flasher::setFlash('gagal', 'ditambahkan', 'danger');
-                redirect(BASEURL . '/belum_ditinjau');
-                exit;
-            }
-        } elseif (in_groups('operator')) {
+            // untuk mengambil data dari tabel belum ditinjau
+            $d = $this->helper->get_first('belum_ditinjau', 'id', $key);
 
-            $d = get_first('belum_ditinjau', 'id', $key);
+            // memasukan data tabel ke array data
+            $data =
+                [
+                    'id' => $d['id'],
+                    'sub_bagian' => $d['sub_bagian'],
+                    'keperluan' => $d['keperluan'],
+                    'waktu' => $d['waktu'],
+                    'nama_barang' => $d['nama_barang'],
+                    'jumlah' => $d['jumlah'],
+                    'satuan' => $d['satuan'],
+                    'user_id' => $d['user_id'],
+                    'operator_id' => $this->helper->user('id'),
+                ];
 
-            // mengambil data post
-            $id = $key;
-            $sub_bagian = $d['sub_bagian'];
-            $keperluan = $d['keperluan'];
-            $waktu = $d['waktu'];
-            $nama_barang = $d['nama_barang'];
-            $jumlah = $d['jumlah'];
-            $satuan = $d['satuan'];
-            $user_id = $d['user_id'];
-            $operator_id = user('id');
 
-            // masukan kedalam variabel
-            $data = "'$id', '$sub_bagian', '$keperluan', '$waktu', '$nama_barang', '$jumlah', '$satuan', '$user_id', '$operator_id'";
 
-            $model = $this->model->konfirmasi_belum_ditinjau($data);
-
-            if ($model > 0) {
-                if (delete('belum_ditinjau', 'id', $key) > 0) :
-                    // Flasher::setFlash('berhasil', 'ditambahkan', 'success');
-                    redirect(BASEURL . '/dalam_proses');
-                    exit;
-                endif;
-            } else {
-                // Flasher::setFlash('gagal', 'ditambahkan', 'danger');
-                redirect(BASEURL . '/belum_ditinjau');
+            if ($this->model->konfirmasi_belum_ditinjau($data) > 0) {
+                Flasher::setFlash('success', 'Barang berhasil dikonfirmasi');
+                $this->helper->redirect(BASEURL . '/dalam_proses');
                 exit;
             }
-        } elseif (in_groups('user')) {
-            redirect(BASEURL);
+        } elseif ($this->helper->in_groups('user')) {
+            $this->helper->redirect(BASEURL);
             exit;
         } else {
-            header("Location: " . LOGOUT);
+            $this->helper->redirect(LOGOUT);
         }
     }
 
     public function batal()
     {
-        if (in_groups('admin')) {
-            $model = $this->model->hapus_belum_ditinjau();
-
-            if ($model > 0) {
-                // Flasher::setFlash('berhasil', 'ditambahkan', 'success');
-                redirect(BASEURL . '/belum_ditinjau');
-                exit;
-            } else {
-                // Flasher::setFlash('gagal', 'ditambahkan', 'danger');
-                redirect(BASEURL . '/belum_ditinjau');
-                exit;
-            }
-        } elseif (in_groups('operator')) {
+        $this->helper->is_login();
+        if ($this->helper->in_groups('operator') || $this->helper->in_groups('admin')) {
             if (isset($_POST['submit'])) :
 
-                $dt = $_POST;
+                // untuk mengambil data dari tabel belum ditinjau
+                $d = $this->helper->get_first('belum_ditinjau', 'id', $_POST['id']);
 
-                $d = get_first('belum_ditinjau', 'id', $dt['id']);
+                // memasukan data tabel ke array data
+                $data =
+                    [
+                        'id' => $d['id'],
+                        'sub_bagian' => $d['sub_bagian'],
+                        'keperluan' => $d['keperluan'],
+                        'waktu' => $d['waktu'],
+                        'nama_barang' => $d['nama_barang'],
+                        'jumlah' => $d['jumlah'],
+                        'satuan' => $d['satuan'],
+                        'alasan' => $_POST['alasan'],
+                        'user_id' => $d['user_id'],
+                        'operator_id' => $this->helper->user('id'),
+                    ];
 
-
-                // mengambil data post
-                $id = $d['id'];
-                $sub_bagian = $d['sub_bagian'];
-                $keperluan = $d['keperluan'];
-                $waktu = $d['waktu'];
-                $nama_barang = $d['nama_barang'];
-                $jumlah = $d['jumlah'];
-                $satuan = $d['satuan'];
-                $alasan = $dt['alasan'];
-                $user_id = $d['user_id'];
-                $operator_id = user('id');
-
-                // masukan kedalam variabel
-                $data = "'$id', '$sub_bagian', '$keperluan', '$waktu', '$nama_barang', '$jumlah', '$satuan', '$alasan', '$user_id', '$operator_id'";
-
-                $model = $this->model->batal($data);
-
-                if ($model > 0) {
-                    if (delete('belum_ditinjau', 'id', $id) > 0) :
-                        // Flasher::setFlash('berhasil', 'ditambahkan', 'success');
-                        redirect(BASEURL . '/riwayat_pembatalan');
-                        exit;
-                    endif;
-                } else {
-                    // Flasher::setFlash('gagal', 'ditambahkan', 'danger');
-                    redirect(BASEURL . '/belum_ditinjau');
+                if ($this->model->batal($data) > 0) {
+                    Flasher::setFlash('success', 'Berhasil melakukan pembatalan barang');
+                    $this->helper->redirect(BASEURL . '/riwayat_pembatalan');
                     exit;
                 }
             endif;
-        } elseif (in_groups('user')) {
-            redirect(BASEURL);
+        } elseif ($this->helper->in_groups('user')) {
+            $this->helper->redirect(BASEURL);
             exit;
         } else {
-            header("Location: " . LOGOUT);
+            $this->helper->redirect(LOGOUT);
         }
     }
 }

@@ -2,7 +2,7 @@
 
 
 define('BASEURL', 'http://localhost/sipat/html/sipat');
-define('LOGOUT', 'http://localhost/sipat/m4s_sislog/logout.php');
+define('LOGOUT', 'http://localhost/sipat/html/sipat/login/logout');
 define('ASSETS', 'http://localhost/sipat/html/sipat/assets');
 
 

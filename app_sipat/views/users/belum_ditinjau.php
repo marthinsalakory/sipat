@@ -6,7 +6,7 @@
             <div class="row align-items-end">
 
                 <!-- Solid Alert start -->
-                <?php flash(); ?>
+                <?php Flasher::flash(); ?>
                 <!-- Solid Alert end -->
 
                 <div class="col-lg-8">
@@ -66,7 +66,7 @@
                             <tbody>
                                 <?php $no = 0; ?>
                                 <?php foreach ($data['belum_ditinjau'] as $b) : ?>
-                                    <?php if ($b['user_id'] == user('id')) : ?>
+                                    <?php if ($b['user_id'] == $this->helper->user('id')) : ?>
                                         <tr>
                                             <td><?= ++$no; ?></td>
                                             <td><?= $b['sub_bagian']; ?></td>
@@ -91,9 +91,5 @@
             <!-- `New` Constructor table end -->
         </div>
     </div>
-</div>
-<!-- Warning Section Starts -->
-<div id="styleSelector">
-
 </div>
 </div>

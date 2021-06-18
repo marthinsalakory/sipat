@@ -5,12 +5,14 @@ class Dashboard extends Controller
 
 	function __construct()
 	{
+		// $this->m4s = $this->M4S('fungsi');
 		$this->helper = new Helper;
 	}
 
 	public function index()
 	{
-		if (in_groups('admin')) {
+		$this->helper->is_login();
+		if ($this->helper->in_groups('admin')) {
 			$data =
 				[
 					'title' => 'System Permintaan Alat',
@@ -20,7 +22,7 @@ class Dashboard extends Controller
 			$this->view('templates/header', $data);
 			$this->view('admin/index', $data);
 			$this->view('templates/footer', $data);
-		} else if (in_groups('operator')) {
+		} else if ($this->helper->in_groups('operator')) {
 			$data =
 				[
 					'title' => 'System Permintaan Alat',
@@ -30,7 +32,7 @@ class Dashboard extends Controller
 			$this->view('templates/header', $data);
 			$this->view('operators/index', $data);
 			$this->view('templates/footer', $data);
-		} else if (in_groups('user')) {
+		} else if ($this->helper->in_groups('user')) {
 			$data =
 				[
 					'title' => 'System Permintaan Alat',
@@ -41,7 +43,7 @@ class Dashboard extends Controller
 			$this->view('users/index', $data);
 			$this->view('templates/footer', $data);
 		} else {
-			header("Location: " . BASEURL . "/m4s_sislog/logout.php");
+			$this->helper->redirect(LOGOUT);
 		}
 	}
 }

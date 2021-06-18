@@ -6,6 +6,11 @@
 class Helper
 {
 
+	public function __construct()
+	{
+		$this->db = new Database;
+	}
+
 	public function get_cookie($key)
 	{
 		if (isset($_COOKIE[$key])) {
@@ -50,18 +55,26 @@ class Helper
 		session_destroy();
 	}
 
+	// public function is_login()
+	// {
+	// 	if ($this->get_session('iduser')) {
+	// 		return true;
+	// 	} else {
+	// 		return false;
+	// 	}
+	// }
+
 	public function is_login()
 	{
-		if ($this->get_session('iduser')) {
-			return true;
-		} else {
-			return false;
+		if (empty($_SESSION['login']) || empty($_SESSION['user'])) {
+			$this->redirect(BASEURL);
 		}
 	}
 
 	public function redirect($uri)
 	{
-		return header('location:' . $uri);
+		header('location:' . $uri);
+		exit;
 	}
 
 
@@ -344,5 +357,59 @@ class Helper
 				break;
 		}
 		return $menu;
+	}
+
+	public function allowedFields()
+	{
+		$arr = [];
+		$arr = ['id', 'tes'];
+		$query = "INSERT INTO belum_ditinjaSu
+                    VALUES
+                  (
+                    :$arr, :sub_bagian, :keperluan, :waktu, :nama_barang, :jumlah, :satuan, :user_id
+                    )";
+
+		$this->db->query($query);
+	}
+
+	public function dateTimeNow()
+	{
+		$timezone = time() + (60 * 60 * 9);
+		return gmdate('Y-m-d H:i:s', $timezone);
+	}
+
+	public function user($key)
+	{
+		$kuy = $_SESSION["user"];
+		$this->db->query('SELECT * FROM users WHERE id = :id');
+		$this->db->bind('id', $kuy);
+		return $this->db->single()[$key];
+	}
+
+	// Untuk mengambil 1 data dari tabel dengan cepat
+	// Cara pengetikan get_first(nama_tabel, key, data_key)
+	public function get_first($tabel, $key, $data)
+	{
+		$this->db->query('SELECT * FROM ' . $tabel . ' WHERE ' . $key . ' = :' . $key);
+		$this->db->bind($key, $data);
+		return $this->db->single();
+	}
+
+	public function tes()
+	{
+		return 'coba sa';
+	}
+
+	// untuk menampilkan data user saja
+	public function in_groups($key)
+	{
+		$user_id = $this->user('id');
+		$group_id = $this->get_first('auth_groups', 'name', $key)['id'];
+		$result = $this->get_first('auth_groups_users', 'user_id', $user_id)['group_id'];
+
+		if ($result == $group_id) {
+			return true;
+		}
+		return false;
 	}
 }

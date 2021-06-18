@@ -6,7 +6,7 @@
             <div class="row align-items-end">
 
                 <!-- Solid Alert start -->
-                <?php flash(); ?>
+                <?php Flasher::flash(); ?>
                 <!-- Solid Alert end -->
 
                 <div class="col-lg-8">
@@ -54,7 +54,6 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>Status</th>
                                     <th>Nama Barang</th>
                                     <th>Jumlah</th>
                                     <th>Satuan</th>
@@ -65,17 +64,18 @@
                             </thead>
                             <tbody>
                                 <?php $no = 0; ?>
-                                <?php foreach ($data['riwayat_pembatalan'] as $r) : ?>
-                                    <tr>
-                                        <td><?= ++$no; ?></td>
-                                        <td><button type="button" class="btn btn-primary btn-skew btn-sm">Sukses</button></td>
-                                        <td><?= $r['nama_barang']; ?></td>
-                                        <td><?= $r['jumlah']; ?></td>
-                                        <td><?= $r['satuan']; ?></td>
-                                        <td><?= $r['sub_bagian']; ?></td>
-                                        <td><?= $r['keperluan']; ?></td>
-                                        <td><?= $r["waktu"]; ?></td>
-                                    </tr>
+                                <?php foreach ($data['riwayat_pengajuan'] as $r) : ?>
+                                    <?php if ($r['user_id'] == $this->helper->user('id')) : ?>
+                                        <tr>
+                                            <td><?= ++$no; ?></td>
+                                            <td><?= $r['nama_barang']; ?></td>
+                                            <td><?= $r['jumlah']; ?></td>
+                                            <td><?= $r['satuan']; ?></td>
+                                            <td><?= $r['sub_bagian']; ?></td>
+                                            <td><?= $r['keperluan']; ?></td>
+                                            <td><?= $r["waktu"]; ?></td>
+                                        </tr>
+                                    <?php endif; ?>
                                 <?php endforeach; ?>
                             </tbody>
                         </table>
@@ -85,9 +85,5 @@
             <!-- `New` Constructor table end -->
         </div>
     </div>
-</div>
-<!-- Warning Section Starts -->
-<div id="styleSelector">
-
 </div>
 </div>

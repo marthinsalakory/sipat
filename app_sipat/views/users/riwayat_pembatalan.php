@@ -4,10 +4,14 @@
         <!-- Page-header start -->
         <div class="page-header">
             <div class="row align-items-end">
+                <!-- Solid Alert start -->
+                <?php Flasher::flash(); ?>
+                <!-- Solid Alert end -->
+
                 <div class="col-lg-8">
                     <div class="page-header-title">
                         <div class="d-inline">
-                            <h4>Data belum ditinjau</h4>
+                            <h4>Data Riwayat Pembatalan</h4>
                             <!-- <span>Optimising the table's layout for different screen</span> -->
                         </div>
                     </div>
@@ -33,7 +37,7 @@
             <!-- `New` Constructor table start -->
             <div class="card">
                 <div class="card-header">
-                    <h5>Data belum ditinjau</h5>
+                    <h5>Data Riwayat Pembatalan</h5>
                     <!-- <span>Responsive will automatically detect new DataTable instances being created on a page and initialize itself if it finds the responsive option or responsive class name on the table, as shown in the other examples.</span> -->
                     <div class="card-header-right">
                         <ul class="list-unstyled card-option">
@@ -49,7 +53,6 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>Status</th>
                                     <th>Alasan Pembatalan</th>
                                     <th>Nama Barang</th>
                                     <th>Jumlah</th>
@@ -62,17 +65,18 @@
                             <tbody>
                                 <?php $no = 0; ?>
                                 <?php foreach ($data['riwayat_pembatalan'] as $r) : ?>
-                                    <tr>
-                                        <td><?= ++$no; ?></td>
-                                        <td><button type="button" class="btn btn-danger btn-skew btn-sm">Dibatalkan</button></td>
-                                        <td><?= $r['alasan']; ?></td>
-                                        <td><?= $r['nama_barang']; ?></td>
-                                        <td><?= $r['jumlah']; ?></td>
-                                        <td><?= $r['satuan']; ?></td>
-                                        <td><?= $r['sub_bagian']; ?></td>
-                                        <td><?= $r['keperluan']; ?></td>
-                                        <td><?= $r["waktu"]; ?></td>
-                                    </tr>
+                                    <?php if ($r['user_id'] == $this->helper->user('id')) : ?>
+                                        <tr>
+                                            <td><?= ++$no; ?></td>
+                                            <td><?= $r['alasan']; ?></td>
+                                            <td><?= $r['nama_barang']; ?></td>
+                                            <td><?= $r['jumlah']; ?></td>
+                                            <td><?= $r['satuan']; ?></td>
+                                            <td><?= $r['sub_bagian']; ?></td>
+                                            <td><?= $r['keperluan']; ?></td>
+                                            <td><?= $r["waktu"]; ?></td>
+                                        </tr>
+                                    <?php endif; ?>
                                 <?php endforeach; ?>
                             </tbody>
                         </table>
@@ -82,9 +86,5 @@
             <!-- `New` Constructor table end -->
         </div>
     </div>
-</div>
-<!-- Warning Section Starts -->
-<div id="styleSelector">
-
 </div>
 </div>

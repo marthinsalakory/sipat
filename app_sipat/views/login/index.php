@@ -1,18 +1,8 @@
-<?php include "function.php"; ?>
-<?php include "../app_sipat/config.php"; ?>
-<?php
-
-if (isset($_SESSION['login'])) {
-    header("Location: " . BASEURL);
-    exit;
-}
-
-?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <title>Adminty - Premium Admin Template by Colorlib </title>
+    <title>Login || Sistem Permintaan Alat</title>
     <!-- HTML5 Shim and Respond.js IE10 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 10]>
@@ -84,7 +74,7 @@ if (isset($_SESSION['login'])) {
         <div class="container-fluid">
             <div class="row">
                 <div class="col-sm-12">
-                    <form action="action.php" method="POST" class="md-float-material form-material">
+                    <form action="<?= BASEURL; ?>/login/login" method="POST" class="md-float-material form-material">
                         <div class="text-center">
                             <img src="<?= BASEURL; ?>\files\unpatti.png" weight="150" height="150" alt="logo.png">
                         </div>
@@ -226,4 +216,3 @@ if (isset($_SESSION['login'])) {
 </body>
 
 </html>
-<?php if (isset($_SESSION))  unset($_SESSION['berhasil']); ?>

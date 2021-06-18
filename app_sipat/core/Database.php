@@ -15,7 +15,7 @@ class Database
 
 	function __construct()
 	{
-		$dsn = 'mysql:host=' . $this->host .';dbname=' . $this->db_name;
+		$dsn = 'mysql:host=' . $this->host . ';dbname=' . $this->db_name;
 
 		$option = [
 			PDO::ATTR_PERSISTENT => true,
@@ -24,20 +24,25 @@ class Database
 
 		try {
 			$this->dbh = new PDO($dsn, $this->user, $this->pass, $option);
-		} catch(PDOException $e) {
+		} catch (PDOException $e) {
 			die($e->getMessage());
 		}
 	}
 
-	public function query($query) 
+	public function conn()
+	{
+		return new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+	}
+
+	public function query($query)
 	{
 		$this->stmt = $this->dbh->prepare($query);
 	}
 
-	public function bind($param, $value, $type= null)
+	public function bind($param, $value, $type = null)
 	{
-		if( is_null($type) ) {
-			switch ( true ) {
+		if (is_null($type)) {
+			switch (true) {
 				case is_int($value):
 					$type = PDO::PARAM_INT;
 					break;
@@ -56,7 +61,7 @@ class Database
 		$this->stmt->bindValue($param, $value, $type);
 	}
 
-	public function execute ()
+	public function execute()
 	{
 		$this->stmt->execute();
 	}
@@ -78,4 +83,8 @@ class Database
 		return $this->stmt->rowCount();
 	}
 
+	public function rowCount()
+	{
+		return $this->stmt->rowCount();
+	}
 }

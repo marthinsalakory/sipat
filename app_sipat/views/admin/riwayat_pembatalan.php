@@ -11,7 +11,7 @@
                 <div class="col-lg-8">
                     <div class="page-header-title">
                         <div class="d-inline">
-                            <h4>Halaman Riwayat Pembatalan</h4>
+                            <h4>Data Riwayat Pembatalan</h4>
                             <!-- <span>Optimising the table's layout for different screen</span> -->
                         </div>
                     </div>

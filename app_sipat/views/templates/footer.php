@@ -115,7 +115,8 @@
 
 <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
 <!-- validasi jquery -->
-<!-- <script src="<?= BASEURL; ?>/assets/saya/lib/jquery.js"></script> -->
+<!-- <script src="<? //= BASEURL; 
+                    ?>/assets/saya/lib/jquery.js"></script> -->
 <script src="<?= BASEURL; ?>/assets/saya/dist/jquery.validate.js"></script>
 </body>
 

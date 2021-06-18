@@ -4,10 +4,15 @@
         <!-- Page-header start -->
         <div class="page-header">
             <div class="row align-items-end">
+                <!-- Solid Alert start -->
+                <?php Flasher::flash(); ?>
+                <!-- Solid Alert end -->
+
                 <div class="col-lg-8">
                     <div class="page-header-title">
                         <div class="d-inline">
                             <h4>Data belum ditinjau</h4>
+
                             <!-- <span>Optimising the table's layout for different screen</span> -->
                         </div>
                     </div>
@@ -48,31 +53,34 @@
                         <table id="new-cons" class="table table-striped table-bordered nowrap">
                             <thead>
                                 <tr>
+                                    <th>Aksi</th>
                                     <th>No</th>
                                     <th>Sub Bagian</th>
                                     <th>Keperluan</th>
                                     <th>Waktu</th>
                                     <th>Nama Barang</th>
                                     <th>Jumlah</th>
-                                    <th>Satuan</th>
-                                    <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php $no = 0; ?>
                                 <?php foreach ($data['belum_ditinjau'] as $b) : ?>
                                     <tr>
+                                        <td>
+                                            <a href="<?= BASEURL; ?>/belum_ditinjau/hapus/<?= $b['id']; ?>">
+                                                <button type="button" class="btn btn-danger btn-round btn-sm">Hapus</button>
+                                            </a>
+                                            <button type="button" class="btn btn-warning btn-round btn-sm waves-effect md-trigger batal" data-id="<?= $b['id']; ?>" data-modal="modal-11">Batalkan</button>
+                                            <a href="<?= BASEURL; ?>/belum_ditinjau/konfirmasi/<?= $b['id']; ?>">
+                                                <button type="button" class="btn btn-success btn-round btn-sm">Konfirmasi</button>
+                                            </a>
+                                        </td>
                                         <td><?= ++$no; ?></td>
                                         <td><?= $b['sub_bagian']; ?></td>
                                         <td><?= $b['keperluan']; ?></td>
                                         <td><?= $b["waktu"]; ?></td>
                                         <td><?= $b['nama_barang']; ?></td>
-                                        <td><?= $b['jumlah']; ?></td>
-                                        <td><?= $b['satuan']; ?></td>
-                                        <td>
-                                            <button class="btn btn-danger btn-round btn-sm">Batalkan</button>
-                                            <button class="btn btn-success btn-round btn-sm">Konfirmasi</button>
-                                        </td>
+                                        <td><?= $b['jumlah'] . " " . $b['satuan']; ?></td>
                                     </tr>
                                 <?php endforeach; ?>
                             </tbody>
@@ -84,8 +92,40 @@
         </div>
     </div>
 </div>
-<!-- Warning Section Starts -->
-<div id="styleSelector">
-
+<div class="md-modal md-effect-11" id="modal-11">
+    <div class="md-content">
+        <h3 class="bg-warning">Yakin Ingin Membatalkan?</h3>
+        <div>
+            <p>Masukan alasan pembatalan:</p>
+            <form action="<?= BASEURL; ?>/belum_ditinjau/batal" method="POST">
+                <input type="hidden" name="id" id="id_alasan" value="">
+                <div class="row mb-4">
+                    <div class="col-sm-12">
+                        <div class="input-group input-group-warning">
+                            <span class="input-group-addon">
+                                <i class="fas fa-adjust"></i>
+                            </span>
+                            <textarea class="form-control" placeholder="Kenapa anda ingin membatalkan? Jelaskan:" name="alasan" id="tes" cols="30" rows="10"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" name="submit" class="btn btn-warning btn-block btn-round waves-effect">Lanjutkan</button>
+                <button type="button" class="btn btn-warning btn-block btn-round waves-effect md-close">Close</button>
+            </form>
+        </div>
+    </div>
 </div>
+<!-- javascript untuk modal start -->
+<script>
+    $(document).ready(function() {
+        $(".batal").click(function() {
+            const id = $(this).data("id");
+
+            $("#id_alasan").attr("value", id);
+        });
+    });
+</script>
+</script>
+<!-- javascript untuk modal end -->
+
 </div>

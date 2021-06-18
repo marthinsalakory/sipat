@@ -4,6 +4,7 @@
         <!-- Page-header start -->
         <div class="page-header">
             <div class="row align-items-end">
+
                 <!-- Solid Alert start -->
                 <?php Flasher::flash(); ?>
                 <!-- Solid Alert end -->
@@ -11,7 +12,7 @@
                 <div class="col-lg-8">
                     <div class="page-header-title">
                         <div class="d-inline">
-                            <h4>Halaman Riwayat Pembatalan</h4>
+                            <h4>Halaman Riwayat Pengajuan</h4>
                             <!-- <span>Optimising the table's layout for different screen</span> -->
                         </div>
                     </div>
@@ -37,7 +38,7 @@
             <!-- `New` Constructor table start -->
             <div class="card">
                 <div class="card-header">
-                    <h5>Data Riwayat Pembatalan</h5>
+                    <h5>Data riwayat pengajuan</h5>
                     <!-- <span>Responsive will automatically detect new DataTable instances being created on a page and initialize itself if it finds the responsive option or responsive class name on the table, as shown in the other examples.</span> -->
                     <div class="card-header-right">
                         <ul class="list-unstyled card-option">
@@ -53,7 +54,6 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>Alasan Pembatalan</th>
                                     <th>Nama Barang</th>
                                     <th>Jumlah</th>
                                     <th>Satuan</th>
@@ -64,10 +64,9 @@
                             </thead>
                             <tbody>
                                 <?php $no = 0; ?>
-                                <?php foreach ($data['riwayat_pembatalan'] as $r) : ?>
+                                <?php foreach ($data['riwayat_pengajuan'] as $r) : ?>
                                     <tr>
                                         <td><?= ++$no; ?></td>
-                                        <td><?= $r['alasan']; ?></td>
                                         <td><?= $r['nama_barang']; ?></td>
                                         <td><?= $r['jumlah']; ?></td>
                                         <td><?= $r['satuan']; ?></td>

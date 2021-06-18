@@ -2,6 +2,11 @@
 
 class Controller
 {
+	function __construct()
+	{
+		// $this->helper = new Helper;
+	}
+
 	public function view($view, $data = [])
 	{
 		require_once '../../app_sipat/views/' . $view . '.php';

@@ -11,7 +11,8 @@ class Riwayat_pembatalan extends Controller
 
     public function index()
     {
-        if (in_groups('admin')) {
+        $this->helper->is_login();
+        if ($this->helper->in_groups('admin')) {
             $data =
                 [
                     'title' => 'Permintaan Belum Ditinjau',
@@ -22,7 +23,7 @@ class Riwayat_pembatalan extends Controller
             $this->view('templates/header', $data);
             $this->view('admin/riwayat_pembatalan', $data);
             $this->view('templates/footer', $data);
-        } elseif (in_groups('operator')) {
+        } elseif ($this->helper->in_groups('operator')) {
             $data =
                 [
                     'title' => 'Permintaan Belum Ditinjau',
@@ -33,7 +34,7 @@ class Riwayat_pembatalan extends Controller
             $this->view('templates/header', $data);
             $this->view('operators/riwayat_pembatalan', $data);
             $this->view('templates/footer', $data);
-        } elseif (in_groups('user')) {
+        } elseif ($this->helper->in_groups('user')) {
             $data =
                 [
                     'title' => 'Permintaan Belum Ditinjau',
@@ -45,7 +46,7 @@ class Riwayat_pembatalan extends Controller
             $this->view('users/riwayat_pembatalan', $data);
             $this->view('templates/footer', $data);
         } else {
-            header("Location: " . BASEURL . "/m4s_sislog/logout.php");
+            $this->helper->redirect(BASEURL . "/m4s_sislog/logout.php");
         }
     }
 }

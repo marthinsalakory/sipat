@@ -11,7 +11,8 @@ class Ajukan_barang extends Controller
 
     public function index()
     {
-        if (in_groups('admin')) {
+        $this->helper->is_login();
+        if ($this->helper->in_groups('admin')) {
             $data =
                 [
                     'title' => 'Halaman Pengajuan Barang',
@@ -21,9 +22,9 @@ class Ajukan_barang extends Controller
             $this->view('templates/header', $data);
             $this->view('admin/ajukan_barang', $data);
             $this->view('templates/footer', $data);
-        } elseif (in_groups('operator')) {
-            header("Location: " . BASEURL);
-        } elseif (in_groups('user')) {
+        } elseif ($this->helper->in_groups('operator')) {
+            $this->helper->redirect(BASEURL);
+        } elseif ($this->helper->in_groups('user')) {
             $data =
                 [
                     'title' => 'Halaman Pengajuan Barang',
@@ -34,47 +35,43 @@ class Ajukan_barang extends Controller
             $this->view('users/ajukan_barang', $data);
             $this->view('templates/footer', $data);
         } else {
-            header("Location: " . LOGOUT);
+            $this->helper->redirect(LOGOUT);
         }
     }
 
     public function tambah()
     {
-        if (in_groups('admin') || in_groups('user')) {
+        $this->helper->is_login();
+        if ($this->helper->in_groups('operator')) {
+            redirect(BASEURL);
+        } else if ($this->helper->in_groups('admin') || $this->helper->in_groups('user')) {
             if (isset($_POST['submit'])) {
-                // $_post
-                $d = $_POST;
 
-                // mengambil data post
-                $id = uniqid();
-                $sub_bagian = user('nama_lengkap');
-                $keperluan = $d['keperluan'];
-                $waktu = 21;
-                $nama_barang = $d['nama_barang'];
-                $jumlah = $d['jumlah'];
-                $satuan = $d['satuan'];
-                $user_id = user('id');
+                $data =
+                    [
+                        'id' => uniqid(),
+                        'sub_bagian' => $this->helper->user('nama_lengkap'),
+                        'keperluan' => $_POST['keperluan'],
+                        'waktu' => $this->helper->dateTimeNow(),
+                        'nama_barang' => $_POST['nama_barang'],
+                        'jumlah' => $_POST['jumlah'],
+                        'satuan' => $_POST['satuan'],
+                        'user_id' => $this->helper->user('id'),
+                    ];
 
-                // masukan kedalam variabel
-                $data = "'$id', '$sub_bagian', '$keperluan', '$waktu', '$nama_barang', '$jumlah', '$satuan', '$user_id'";
-
-                $model = $this->model->ajukan_barang($data);
-
-                if ($model > 0) {
-                    setFlash('success', 'Berhasil mengajukan barang');
-                    redirect(BASEURL . "/belum_ditinjau");
-                    exit;
+                if ($this->model->ajukan_barang($data) > 0) {
+                    Flasher::setFlash('success', 'Berhasil mengajukan barang');
+                    $this->helper->redirect(BASEURL . '/belum_ditinjau');
                 } else {
-                    setFlash('danger', 'Gagal membuat pengajuan');
-                    redirect(BASEURL . '/ajukan_barang');
-                    exit;
+                    Flasher::setFlash('danger', 'Gagal membuat pengajuan');
+                    $this->helper->redirect(BASEURL . '/ajukan_barang');
                 }
             } else {
-                header("Location: " . BASEURL);
+                $this->helper->redirect(BASEURL);
             }
         } else {
-            header("Location: " . BASEURL . "/m4s_sislog/logout.php");
+            $this->helper->redirect(BASEURL . "/m4s_sislog/logout.php");
         }
-        header("Location: " . BASEURL);
+        $this->helper->redirect(BASEURL);
     }
 }

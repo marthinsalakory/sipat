@@ -16,10 +16,14 @@
         <!-- Page-header start -->
         <div class="page-header">
             <div class="row align-items-end">
+                <!-- Solid Alert start -->
+                <?php Flasher::flash(); ?>
+                <!-- Solid Alert end -->
+
                 <div class="col-lg-8">
                     <div class="page-header-title">
                         <div class="d-inline">
-                            <h4>Data belum ditinjau</h4>
+                            <h4>Halaman data pengajuan yang sedang diproses</h4>
                             <!-- <span>Optimising the table's layout for different screen</span> -->
                         </div>
                     </div>
@@ -45,7 +49,7 @@
             <!-- `New` Constructor table start -->
             <div class="card">
                 <div class="card-header">
-                    <h5>Data belum ditinjau</h5>
+                    <h5>Data pengajuan yang sedang diproses</h5>
                     <!-- <span>Responsive will automatically detect new DataTable instances being created on a page and initialize itself if it finds the responsive option or responsive class name on the table, as shown in the other examples.</span> -->
                     <div class="card-header-right">
                         <ul class="list-unstyled card-option">
@@ -73,18 +77,20 @@
                             <tbody>
                                 <?php $no = 0; ?>
                                 <?php foreach ($data['dalam_proses'] as $d) : ?>
-                                    <tr>
-                                        <td>
-                                            <button type="button" id="konfirmasi" class="btn btn-primary btn-round btn-sm waves-effect md-trigger" data-id="<?= $d['id']; ?>" data-modal="modal-11">Konfimasi</button>
-                                        </td>
-                                        <td><?= ++$no; ?></td>
-                                        <td><?= $d['sub_bagian']; ?></td>
-                                        <td><?= $d['keperluan']; ?></td>
-                                        <td><?= $d["waktu"]; ?></td>
-                                        <td><?= $d['nama_barang']; ?></td>
-                                        <td><?= $d['jumlah']; ?></td>
-                                        <td><?= $d['satuan']; ?></td>
-                                    </tr>
+                                    <?php if ($d['user_id'] == $this->helper->user('id')) : ?>
+                                        <tr>
+                                            <td>
+                                                <button type="button" id="konfirmasi" class="btn btn-primary btn-round btn-sm waves-effect md-trigger" data-id="<?= $d['id']; ?>" data-modal="modal-11">Konfimasi</button>
+                                            </td>
+                                            <td><?= ++$no; ?></td>
+                                            <td><?= $d['sub_bagian']; ?></td>
+                                            <td><?= $d['keperluan']; ?></td>
+                                            <td><?= $d["waktu"]; ?></td>
+                                            <td><?= $d['nama_barang']; ?></td>
+                                            <td><?= $d['jumlah']; ?></td>
+                                            <td><?= $d['satuan']; ?></td>
+                                        </tr>
+                                    <?php endif; ?>
                                 <?php endforeach; ?>
                             </tbody>
                         </table>
@@ -126,8 +132,4 @@
     });
 </script>
 
-<!-- Warning Section Starts -->
-<div id="styleSelector">
-
-</div>
 </div>

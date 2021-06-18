@@ -3,6 +3,9 @@
 
         <div class="page-body">
             <div class="row">
+                <!-- Solid Alert start -->
+                <?php Flasher::flash(); ?>
+                <!-- Solid Alert end -->
                 <!-- task, page, download counter  start -->
                 <div class="col-xl-3 col-md-6">
                     <div class="card bg-c-yellow update-card">
@@ -79,9 +82,5 @@
                 <!-- task, page, download counter  end -->
             </div>
         </div>
-    </div>
-
-    <div id="styleSelector">
-
     </div>
 </div>

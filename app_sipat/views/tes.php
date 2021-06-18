@@ -102,7 +102,7 @@
                         <a class="mobile-menu" id="mobile-collapse" href="#!">
                             <i class="feather icon-menu"></i>
                         </a>
-                        <a href="<?= BASEURL; ?>">
+                        <a href="index-1.htm">
                             <img height="50px" width="50px" class="img-fluid" src="<?= BASEURL; ?>\files\unpatti.png" alt="Theme-Logo">&nbsp&nbsp&nbsp&nbspSIPAT
                         </a>
                         <a class="mobile-options">
@@ -131,20 +131,29 @@
                             <li class="user-profile header-notification">
                                 <div class="dropdown-primary dropdown">
                                     <div class="dropdown-toggle" data-toggle="dropdown">
-                                        <img src="<?= BASEURL; ?>\files\default.png" class="img-radius" alt="User-Profile-Image">
+                                        <img src="<?= BASEURL; ?>\assets\files\assets\images\avatar-4.jpg" class="img-radius" alt="User-Profile-Image">
                                         <span><?= $this->helper->user('nama_lengkap'); ?></span>
                                         <i class="feather icon-chevron-down"></i>
                                     </div>
                                     <ul class="show-notification profile-notification dropdown-menu" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
-                                        <!-- <li>
+                                        <li>
+                                            <a href="#!">
+                                                <i class="feather icon-settings"></i> Settings
+                                            </a>
+                                        </li>
+                                        <li>
                                             <a href="user-profile.htm">
                                                 <i class="feather icon-user"></i> Profile
                                             </a>
-                                        </li> -->
-                                        <!-- tombol modal ubah data -->
+                                        </li>
                                         <li>
-                                            <a class="waves-effect md-trigger" href="#" data-modal="modal-11">
-                                                <i class="fas fa-unlock-alt"></i> Ubah Password
+                                            <a href="email-inbox.htm">
+                                                <i class="feather icon-mail"></i> My Messages
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="auth-lock-screen.htm">
+                                                <i class="feather icon-lock"></i> Lock Screen
                                             </a>
                                         </li>
                                         <li>
@@ -160,44 +169,6 @@
                     </div>
                 </div>
             </nav>
-            <!-- form untuk ubah password -->
-            <div class="md-modal md-effect-11" id="modal-11">
-                <div class="md-content">
-                    <h3 class="bg-danger label_tambah">Form Ubah Password</h3>
-                    <div>
-                        <form class="form_ubah_password" action="<?= BASEURL; ?>/ubah_password" method="POST">
-                            <input type="hidden" name="id" id="id">
-                            <div class="row mb-4">
-                                <div class="col-sm-12">
-                                    <div class="input-group input-group-danger tas">
-                                        <input autocomplete="off" type="password" id="password_awal" name="password_awal" class="form-control" placeholder="Password awal">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row mb-4">
-                                <div class="col-sm-12">
-                                    <div class="input-group input-group-danger">
-                                        <input autocomplete="off" type="password" id="password" name="password" class="form-control" placeholder="Password baru">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row mb-4">
-                                <div class="col-sm-12">
-                                    <div class="input-group input-group-danger">
-                                        <input autocomplete="off" type="password" id="password2" name="password2" class="form-control" placeholder="Konfirmasi password baru">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row mb-4">
-                                <div class="col-sm-12 text-center">
-                                    <button type="submit" name="submit" class="btn btn-danger btn-block btn-round tombon_tambah">Ubah</button>
-                                    <button type="button" class="btn btn-danger btn-block btn-round mb-3 waves-effect md-close">Batal</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
 
             <div class="pcoded-main-container">
                 <div class="pcoded-wrapper">
@@ -356,3 +327,178 @@
                     </nav>
                     <div class="pcoded-content">
                         <div class="pcoded-inner-content">
+
+                            <!-- ------------------------------------------------------------------------------- -->
+
+                            <div class="main-body">
+                                <div class="page-wrapper">
+
+                                    <div class="page-body">
+                                        <div class="row">
+                                            <!-- task, page, download counter  start -->
+                                            <div class="col-xl-3 col-md-6">
+                                                <div class="card bg-c-yellow update-card">
+                                                    <div class="card-block">
+                                                        <div class="row align-items-end">
+                                                            <!-- Solid Alert start -->
+                                                            <?php Flasher::flash(); ?>
+                                                            <!-- Solid Alert end -->
+
+                                                            <div class="col-8">
+                                                                <h4 class="text-white">30</h4>
+                                                                <h6 class="text-white m-b-0">Belum Ditinjau</h6>
+                                                            </div>
+                                                            <div class="col-4 text-right">
+                                                                <canvas id="update-chart-1" height="50"></canvas>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="card-footer">
+                                                        <p class="text-white m-b-0"><i class="feather icon-clock text-white f-14 m-r-10"></i>update : 2:15 am</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-3 col-md-6">
+                                                <div class="card bg-c-green update-card">
+                                                    <div class="card-block">
+                                                        <div class="row align-items-end">
+                                                            <div class="col-8">
+                                                                <h4 class="text-white">290</h4>
+                                                                <h6 class="text-white m-b-0">Telah Ditinjau</h6>
+                                                            </div>
+                                                            <div class="col-4 text-right">
+                                                                <canvas id="update-chart-2" height="50"></canvas>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="card-footer">
+                                                        <p class="text-white m-b-0"><i class="feather icon-clock text-white f-14 m-r-10"></i>update : 2:15 am</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-3 col-md-6">
+                                                <div class="card bg-c-pink update-card">
+                                                    <div class="card-block">
+                                                        <div class="row align-items-end">
+                                                            <div class="col-8">
+                                                                <h4 class="text-white">145</h4>
+                                                                <h6 class="text-white m-b-0">Dalam Pengiriman</h6>
+                                                            </div>
+                                                            <div class="col-4 text-right">
+                                                                <canvas id="update-chart-3" height="50"></canvas>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="card-footer">
+                                                        <p class="text-white m-b-0"><i class="feather icon-clock text-white f-14 m-r-10"></i>update : 2:15 am</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-3 col-md-6">
+                                                <div class="card bg-c-lite-green update-card">
+                                                    <div class="card-block">
+                                                        <div class="row align-items-end">
+                                                            <div class="col-8">
+                                                                <h4 class="text-white">500</h4>
+                                                                <h6 class="text-white m-b-0">Berhasil Diterima</h6>
+                                                            </div>
+                                                            <div class="col-4 text-right">
+                                                                <canvas id="update-chart-4" height="50"></canvas>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="card-footer">
+                                                        <p class="text-white m-b-0"><i class="feather icon-clock text-white f-14 m-r-10"></i>update : 2:15 am</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- task, page, download counter  end -->
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <!-- ------------------------------------------------------------------------------- -->
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Warning Section Ends -->
+    <!-- Required Jquery -->
+    <script data-cfasync="false" src="..\..\..\cdn-cgi\scripts\5c5dd728\cloudflare-static\email-decode.min.js"></script>
+    <script type="text/javascript" src="<?= BASEURL; ?>\assets\files\bower_components\jquery\js\jquery.min.js"></script>
+    <script type="text/javascript" src="<?= BASEURL; ?>\assets\files\bower_components\jquery-ui\js\jquery-ui.min.js"></script>
+    <script type="text/javascript" src="<?= BASEURL; ?>\assets\files\bower_components\popper.js\js\popper.min.js"></script>
+    <script type="text/javascript" src="<?= BASEURL; ?>\assets\files\bower_components\bootstrap\js\bootstrap.min.js"></script>
+    <!-- jquery slimscroll js -->
+    <script type="text/javascript" src="<?= BASEURL; ?>\assets\files\bower_components\jquery-slimscroll\js\jquery.slimscroll.js"></script>
+    <!-- modernizr js -->
+    <script type="text/javascript" src="<?= BASEURL; ?>\assets\files\bower_components\modernizr\js\modernizr.js"></script>
+    <script type="text/javascript" src="<?= BASEURL; ?>\assets\files\bower_components\modernizr\js\css-scrollbars.js"></script>
+    <!-- sweet alert js -->
+    <script type="text/javascript" src="<?= BASEURL; ?>\assets\files\bower_components\sweetalert\js\sweetalert.min.js"></script>
+    <script type="text/javascript" src="<?= BASEURL; ?>\assets\files\assets\js\modal.js"></script>
+    <!-- sweet alert modal.js intialize js -->
+    <!-- modalEffects js nifty modal window effects -->
+    <script type="text/javascript" src="<?= BASEURL; ?>\assets\files\assets\js\modalEffects.js"></script>
+    <script type="text/javascript" src="<?= BASEURL; ?>\assets\files\assets\js\classie.js"></script>
+    <!-- data-table js -->
+    <script src="<?= BASEURL; ?>\assets\files\bower_components\datatables.net\js\jquery.dataTables.min.js"></script>
+    <script src="<?= BASEURL; ?>\assets\files\bower_components\datatables.net-buttons\js\dataTables.buttons.min.js"></script>
+    <script src="<?= BASEURL; ?>\assets\files\assets\pages\data-table\js\jszip.min.js"></script>
+    <script src="<?= BASEURL; ?>\assets\files\assets\pages\data-table\js\pdfmake.min.js"></script>
+    <script src="<?= BASEURL; ?>\assets\files\assets\pages\data-table\js\vfs_fonts.js"></script>
+    <script src="<?= BASEURL; ?>\assets\files\assets\pages\data-table\extensions\responsive\js\dataTables.responsive.min.js"></script>
+    <script src="<?= BASEURL; ?>\assets\files\bower_components\datatables.net-buttons\js\buttons.print.min.js"></script>
+    <script src="<?= BASEURL; ?>\assets\files\bower_components\datatables.net-buttons\js\buttons.html5.min.js"></script>
+    <script src="<?= BASEURL; ?>\assets\files\bower_components\datatables.net-bs4\js\dataTables.bootstrap4.min.js"></script>
+    <script src="<?= BASEURL; ?>\assets\files\bower_components\datatables.net-responsive\js\dataTables.responsive.min.js"></script>
+    <script src="<?= BASEURL; ?>\assets\files\bower_components\datatables.net-responsive-bs4\js\responsive.bootstrap4.min.js"></script>
+    <!-- i18next.min.js -->
+    <script type="text/javascript" src="<?= BASEURL; ?>\assets\files\bower_components\i18next\js\i18next.min.js"></script>
+    <script type="text/javascript" src="<?= BASEURL; ?>\assets\files\bower_components\i18next-xhr-backend\js\i18nextXHRBackend.min.js"></script>
+    <script type="text/javascript" src="<?= BASEURL; ?>\assets\files\bower_components\i18next-browser-languagedetector\js\i18nextBrowserLanguageDetector.min.js"></script>
+    <script type="text/javascript" src="<?= BASEURL; ?>\assets\files\bower_components\jquery-i18next\js\jquery-i18next.min.js"></script>
+    <!-- Chart js -->
+    <script type="text/javascript" src="<?= BASEURL; ?>\assets\files\bower_components\chart.js\js\Chart.js"></script>
+    <!-- amchart js -->
+    <script src="<?= BASEURL; ?>\assets\files\assets\pages\widget\amchart\amcharts.js"></script>
+    <script src="<?= BASEURL; ?>\assets\files\assets\pages\widget\amchart\serial.js"></script>
+    <script src="<?= BASEURL; ?>\assets\files\assets\pages\widget\amchart\light.js"></script>
+    <script src="<?= BASEURL; ?>\assets\files\assets\js\jquery.mCustomScrollbar.concat.min.js"></script>
+    <script type="text/javascript" src="<?= BASEURL; ?>\assets\files\assets\js\SmoothScroll.js"></script>
+    <script src="<?= BASEURL; ?>\assets\files\assets\js\pcoded.min.js"></script>
+    <!-- custom js -->
+    <script src="<?= BASEURL; ?>\assets\files\assets\pages\data-table\extensions\responsive\js\responsive-custom.js"></script>
+    <script type="text/javascript" src="<?= BASEURL; ?>\assets\files\assets\js\script.js"></script>
+
+    <script src="<?= BASEURL; ?>\assets\files\assets\js\vartical-layout.min.js"></script>
+    <script type="text/javascript" src="<?= BASEURL; ?>\assets\files\assets\pages\dashboard\custom-dashboard.js"></script>
+    <script type="text/javascript" src="<?= BASEURL; ?>\assets\files\assets\js\script.min.js"></script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-23581568-13');
+    </script>
+
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
+    <!-- validasi jquery -->
+    <!-- <script src="<? //= BASEURL; 
+                        ?>/assets/saya/lib/jquery.js"></script> -->
+    <script src="<?= BASEURL; ?>/assets/saya/dist/jquery.validate.js"></script>
+</body>
+
+</html>

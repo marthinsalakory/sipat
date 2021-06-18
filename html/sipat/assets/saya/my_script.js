@@ -42,6 +42,4 @@ $().ready(function () {
       },
     },
   });
-
-  // alert("tess");
 });
